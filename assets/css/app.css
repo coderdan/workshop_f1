@@ -1,3 +1,14 @@
 /* This file is for your main application css. */
 
 @import "./phoenix.css";
+
+ul.driver span.fastest {
+  background: purple;
+}
+ul.driver span.pb {
+  background: green;
+}
+ul.driver span.normal {
+  background: yellow;
+}
+

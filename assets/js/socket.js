@@ -58,7 +58,9 @@ socket.connect()
 let channel = socket.channel("session:current", {})
 
 channel.on("lap", lap => {
-  document.getElementById("time-" + lap.car).innerText = lap.time
+  let time = document.getElementById("time-" + lap.car)
+  time.innerText = lap.time
+  time.className = lap.status
 })
 
 channel.join()

@@ -12,8 +12,7 @@ defmodule F1.Session do
   end
 
   def lap(car, time) do
-    GenServer.cast(Timing, {:lap, car, time})
-    :ok
+    GenServer.call(Timing, {:lap, car, time})
   end
 
   def timings do

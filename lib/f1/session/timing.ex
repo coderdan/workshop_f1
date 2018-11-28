@@ -18,23 +18,43 @@ defmodule F1.Session.Timing do
     {:reply, Map.keys(times), times}
   end
 
-  def handle_cast({:lap, car, time}, times) do
-    {:noreply, record_time(times, car, time)}
+  def handle_call({:lap, car, time}, _from, times) do
+    response =
+      times
+      |> Map.get(car)
+      |> assess_time(time, fastest_overall(times))
+
+    {
+      :reply,
+      response,
+      Map.put(times, car, time)
+    }
   end
 
-  defp record_time(times, car, time) do
-    case Map.fetch(times, car) do
-      {:ok, pb} ->
-        if time < pb or pb == nil do
-          Map.put(times, car, time)
-        else
-          times
-        end
+  defp assess_time(_, time, nil) do
+    # No previous fastest time
+    {:fastest, time}
+  end
+  defp assess_time(_, time, fastest) when time < fastest do
+    # Purple
+    {:fastest, time}
+  end
+  defp assess_time(nil, time, _) do
+    # Green (my first time)
+    {:pb, time}
+  end
+  defp assess_time(prev_time, time, _) when time < prev_time do
+    # Green (fastest so far)
+    {:pb, time}
+  end
+  defp assess_time(_, time, _) do
+    # Yellow :(
+    {:normal, time}
+  end
 
-      :error ->
-        # Ignore any cars that are
-        # not in the session
-        times
-    end
+  defp fastest_overall(times) do
+    times
+    |> Enum.min_by(fn {_, v} -> v end)
+    |> elem(1)
   end
 end

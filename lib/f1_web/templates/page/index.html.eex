@@ -5,7 +5,7 @@
 <section class="row">
   <article class="column">
     <%= for {driver, time} <- @drivers_with_times do %>
-      <ul id="<%= driver.number %>">
+      <ul class="driver">
         <li>
           <%= driver_display(driver) %>
           : <span id="time-<%= driver.number %>"><%= time_display(time) %></span>
