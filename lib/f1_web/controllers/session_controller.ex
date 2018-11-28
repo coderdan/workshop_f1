@@ -12,4 +12,19 @@ defmodule F1Web.SessionController do
         resp(conn, 400, message)
     end
   end
+
+  @doc """
+  Call with:
+
+  ```
+  curl -v -H "Content-Type: application/json" -d '{"car" : 44, "time" : 1.32}' http://localhost:4000/api/sessions/lap
+  ```
+  """
+  def lap(conn, %{"car" => car, "time" => time}) when is_float(time) do
+    Session.lap(car, time)
+    resp(conn, 200, "OK")
+  end
+  def lap(conn, _) do
+    resp(conn, 400, "Invalid time")
+  end
 end

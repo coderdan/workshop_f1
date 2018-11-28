@@ -25,5 +25,6 @@ defmodule F1Web.Router do
 
     resources "/drivers", DriversController, only: [:show]
     put "/sessions/start", SessionController, :start
+    post "/sessions/lap", SessionController, :lap
   end
 end
