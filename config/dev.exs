@@ -68,8 +68,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
 config :f1, F1.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "daniel",
   database: "f1_dev",
   hostname: "localhost",
   pool_size: 10
