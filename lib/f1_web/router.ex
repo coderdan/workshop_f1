@@ -24,5 +24,6 @@ defmodule F1Web.Router do
     pipe_through :api
 
     resources "/drivers", DriversController, only: [:show]
+    put "/sessions/start", SessionController, :start
   end
 end

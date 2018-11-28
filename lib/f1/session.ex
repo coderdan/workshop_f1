@@ -3,8 +3,12 @@ defmodule F1.Session do
 
   @spec start([integer()]) :: :ok | any()
   def start(cars) when is_list(cars) do
-    with {:ok, _} <- Timing.start_link(cars),
-      do: :ok
+    with {:ok, _} <- Timing.start_link(cars) do
+      :ok
+    else
+      {:error, {:already_started, _}} ->
+        {:error, "Already Started"}
+    end
   end
 
   def lap(car, time) do
