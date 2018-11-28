@@ -22,6 +22,7 @@ defmodule F1Web.SessionController do
   """
   def lap(conn, %{"car" => car, "time" => time}) when is_float(time) do
     Session.lap(car, time)
+    F1Web.Endpoint.broadcast!("session:current", "lap", %{car: car, time: time})
     resp(conn, 200, "OK")
   end
   def lap(conn, _) do

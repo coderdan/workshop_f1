@@ -2,7 +2,7 @@ defmodule F1Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", F1Web.RoomChannel
+  channel "session:*", F1Web.SessionChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
