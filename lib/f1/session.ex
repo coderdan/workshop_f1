@@ -20,6 +20,10 @@ defmodule F1.Session do
     GenServer.call(Timing, :timings)
   end
 
+  def cars_on_track do
+    GenServer.call(Timing, :cars_on_track)
+  end
+
   def stop do
     GenServer.stop(Timing)
   end

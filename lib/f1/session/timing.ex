@@ -14,6 +14,10 @@ defmodule F1.Session.Timing do
     {:reply, times, times}
   end
 
+  def handle_call(:cars_on_track, _from, times) do
+    {:reply, Map.keys(times), times}
+  end
+
   def handle_cast({:lap, car, time}, times) do
     {:noreply, record_time(times, car, time)}
   end
