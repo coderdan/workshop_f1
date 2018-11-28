@@ -11,8 +11,7 @@ config :logger, level: :warn
 
 # Configure your database
 config :f1, F1.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "daniel",
   database: "f1_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

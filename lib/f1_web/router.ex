@@ -20,7 +20,9 @@ defmodule F1Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", F1Web do
-  #   pipe_through :api
-  # end
+  scope "/api", F1Web do
+    pipe_through :api
+
+    resources "/drivers", DriversController, only: [:show]
+  end
 end

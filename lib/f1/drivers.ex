@@ -5,4 +5,8 @@ defmodule F1.Drivers do
   def list do
     Repo.all(Driver)
   end
+
+  def find!(id) do
+    Repo.get!(Driver, id)
+  end
 end
